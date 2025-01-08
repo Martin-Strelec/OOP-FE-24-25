@@ -13,6 +13,10 @@ namespace OOP_FE_24_25
         public string AdditionalExtras { get; set; }
         #endregion
 
-        public VIPTicket(string name, decimal price, int availableTickets) : base(name, price, availableTickets) { }
+        public VIPTicket(string name, decimal price, int availableTickets, string addtitionalExtras, string additionalCosts) : base(name, price, availableTickets) 
+        {
+            this.AdditionalExtras = addtitionalExtras;
+            this.AdditionalCosts = additionalCosts;
+        }
     }
 }
