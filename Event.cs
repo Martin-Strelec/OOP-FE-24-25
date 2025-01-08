@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP_FE_24_25
 {
-    internal class Event
+    internal class Event : IComparable<Event>
     {
         #region Properties
         public string Name { get; set; }
@@ -27,6 +27,11 @@ namespace OOP_FE_24_25
             this.Name = name;
             this.EventDate = eventDate;
             this.EventType = eventType;
+        }
+
+        public int CompareTo(Event other)
+        {
+            return this.EventDate.CompareTo(other.EventDate);
         }
 
         public override string ToString()
