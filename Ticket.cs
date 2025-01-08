@@ -21,5 +21,10 @@ namespace OOP_FE_24_25
             this.AvailableTickets = availableTickets;
         }
         public Ticket() { }
+
+        public override string ToString()
+        {
+            return $"{this.Name} - {this.Price}[AVAILABLE - {this.AvailableTickets}]";
+        }
     }
 }
