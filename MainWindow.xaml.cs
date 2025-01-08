@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Configuration;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -54,8 +55,13 @@ namespace OOP_FE_24_25
 
         private void btnBook_Click(object sender, RoutedEventArgs e)
         {
+            //Variables
             int value;
             Ticket selected = lbxTickets.SelectedItem as Ticket;
+
+            //Resetting ListBoxes
+            lbxEvents.ItemsSource = null;
+            lbxTickets.ItemsSource = null;
 
             if (tbxBook != null)
             {
@@ -63,11 +69,27 @@ namespace OOP_FE_24_25
                 {
                     if (value <= selected.AvailableTickets)
                     {
-                        selected.AvailableTickets--;
+                        selected.AvailableTickets -= value;
                         tbkMessage.Text = "Ticket(s) booked!";
                     }
+                    else
+                    {
+                        tbkMessage.Text = "Tickest Sold out!";
+                    }
+                }
+                else
+                {
+                    tbkMessage.Text = "Wrong selection!";
                 }
             }
+            else
+            {
+                tbkMessage.Text = "Field is empty!";
+            }
+
+            //Updating ListBoxes
+            lbxEvents.ItemsSource = events;
+            lbxTickets.ItemsSource = tickets;
         }
     }
 }
