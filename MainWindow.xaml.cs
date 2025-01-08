@@ -9,6 +9,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+// REPO LINK
+// https://github.com/Martin-Strelec/OOP-FE-24-25
+
 namespace OOP_FE_24_25
 {
     /// <summary>
@@ -20,5 +23,6 @@ namespace OOP_FE_24_25
         {
             InitializeComponent();
         }
+
     }
 }
