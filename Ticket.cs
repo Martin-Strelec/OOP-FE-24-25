@@ -24,7 +24,7 @@ namespace OOP_FE_24_25
 
         public override string ToString()
         {
-            return $"{this.Name} - {this.Price}[AVAILABLE - {this.AvailableTickets}]";
+            return $"{this.Name} - {Price}[AVAILABLE - {AvailableTickets}]";
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -21,7 +22,6 @@ namespace OOP_FE_24_25
     public partial class MainWindow : Window
     {
         List<Event> events = new List<Event>();
-        List<Ticket> tickets = new List<Ticket>();
 
         public MainWindow()
         {
@@ -55,65 +55,92 @@ namespace OOP_FE_24_25
             events.Add(ev1);
             events.Add(ev2);
 
-            tickets.Add(tic1);
-            tickets.Add(tic2);
-            tickets.Add(vtic1);
-            tickets.Add(vtic2);
-
             //Sorting events based on their date
             events.Sort();
 
-            lbxEvents.ItemsSource = events;
-            lbxTickets.ItemsSource = tickets;
+            //Applying defaults
+            if (events.Count != 0)
+            {
+                Event selected = events[0];
+
+                lbxEvents.ItemsSource = events;
+                lbxEvents.SelectedItem = selected;
+                lbxTickets.ItemsSource = selected.Tickets;
+            }
+            
         }
 
         private void btnBook_Click(object sender, RoutedEventArgs e)
         {
             //Variables
             int value;
-            Ticket selected = lbxTickets.SelectedItem as Ticket;
+            Event selectedEvent = lbxEvents.SelectedItem as Event;
+            Ticket selectedTicket = lbxTickets.SelectedItem as Ticket;
 
-            //Resetting ListBoxes
-            lbxEvents.ItemsSource = null;
-            lbxTickets.ItemsSource = null;
-
+            //Checking for empty entry
             if (tbxBook.Text != null || tbxBook.Text != "")
             {
-                if (int.TryParse(tbxBook.Text, out value) && (selected != null))
+                //Paring the int
+                if (int.TryParse(tbxBook.Text, out value))
                 {
-                    if (value <= selected.AvailableTickets)
+                    //Checking if both event and tickets are selected 
+                    if (selectedEvent != null && selectedTicket != null)
                     {
-                        selected.AvailableTickets -= value;
-                        if (selected.AvailableTickets == 0)
+                        //Value has to bo lower or equal to available tickets
+                        if (value <= selectedTicket.AvailableTickets)
                         {
-                            tickets.Remove(selected);
+                            selectedTicket.AvailableTickets -= value;
+                            //Removes the ticket from the selection if available ticket count reaches zero
+                            if (selectedTicket.AvailableTickets == 0)
+                            {
+                                selectedEvent.Tickets.Remove(selectedTicket);
+                            }
+                            tbkMessage.Text = "Ticket(s) booked!";
+                            
+                            //Updating ListBoxes
+                            lbxEvents.ItemsSource = events;
+                            lbxTickets.ItemsSource = selectedEvent.Tickets;
                         }
-                        tbkMessage.Text = "Ticket(s) booked!";
+                        else
+                        {
+                            //Error Message
+                            tbkMessage.Text = "Tickest Sold out!";
+                        }
                     }
                     else
                     {
-                        tbkMessage.Text = "Tickest Sold out!";
+                        //Error Message
+                        tbkMessage.Text = "Wrong selection!";
                     }
                 }
                 else
                 {
-                    tbkMessage.Text = "Wrong selection!";
+                    //Error Message
+                    tbkMessage.Text = "Wrong Input!";
                 }
             }
             else
             {
+                //Error Message
                 tbkMessage.Text = "Field is empty!";
             }
 
-            //Updating ListBoxes
-            lbxEvents.ItemsSource = events;
-            lbxTickets.ItemsSource = tickets;
+            
         }
 
         private void lbxEvents_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
 
+            if (lbxEvents.SelectedItem != null)
+            {
+                Event selected = lbxEvents.SelectedItem as Event;
+
+                lbxTickets.ItemsSource = selected.Tickets;
+            }
         }
+
+        //Tried to create the search unsuccsessfully
 
         //private void tbxSearch_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         //{

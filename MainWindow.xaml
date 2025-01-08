@@ -16,7 +16,7 @@
         <Label Content="Number Of Tickets:" HorizontalAlignment="Left" Margin="352,385,0,0" VerticalAlignment="Top" Width="115"/>
         <TextBox x:Name="tbxBook" HorizontalAlignment="Left" Margin="472,389,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnBook" Content="Book" HorizontalAlignment="Left" Margin="616,388,0,0" VerticalAlignment="Top" Click="btnBook_Click"/>
-        <TextBlock x:Name="tbkMessage" HorizontalAlignment="Left" Margin="47,390,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="179"/>
+        <TextBlock x:Name="tbkMessage" HorizontalAlignment="Left" Margin="47,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
 
     </Grid>
 </Window>
