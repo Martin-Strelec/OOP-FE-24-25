@@ -40,16 +40,21 @@ namespace OOP_FE_24_25
             VIPTicket vtic1 = new VIPTicket("Ticket and Hotel Package", 150m, 100, "4* Hotel", 100m);
             VIPTicket vtic2 = new VIPTicket("Weekend Ticket", 200m, 100, "with camping", 100m);
 
+            Ticket tic3 = new Ticket("Early Bird", 100m, 100);
+            Ticket tic4 = new Ticket("Platinum", 150m, 100);
+            VIPTicket vtic3 = new VIPTicket("Ticket and Hotel Package", 150m, 100, "4* Hotel", 100m);
+            VIPTicket vtic4 = new VIPTicket("Weekend Ticket", 200m, 100, "with camping", 100m);
+
             //Adding tickets to Events
             ev1.Tickets.Add(tic1);
             ev1.Tickets.Add(tic2);
             ev1.Tickets.Add(vtic1);
             ev1.Tickets.Add(vtic2);
 
-            ev2.Tickets.Add(tic1);
-            ev2.Tickets.Add(tic2);
-            ev2.Tickets.Add(vtic1);
-            ev2.Tickets.Add(vtic2);
+            ev2.Tickets.Add(tic3);
+            ev2.Tickets.Add(tic4);
+            ev2.Tickets.Add(vtic3);
+            ev2.Tickets.Add(vtic4);
 
             //Adding to lists
             events.Add(ev1);
@@ -95,8 +100,16 @@ namespace OOP_FE_24_25
                             {
                                 selectedEvent.Tickets.Remove(selectedTicket);
                             }
+                            if (selectedEvent.Tickets.Count == 0)
+                            {
+                                events.Remove(selectedEvent);
+                            }
                             tbkMessage.Text = "Ticket(s) booked!";
-                            
+
+                            //Resetting ListBoxes
+                            lbxTickets.ItemsSource = null;
+                            lbxEvents.ItemsSource = null;
+
                             //Updating ListBoxes
                             lbxEvents.ItemsSource = events;
                             lbxTickets.ItemsSource = selectedEvent.Tickets;
@@ -125,13 +138,12 @@ namespace OOP_FE_24_25
                 tbkMessage.Text = "Field is empty!";
             }
 
-            
+
         }
 
         private void lbxEvents_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-
+            //Checks if event is selected 
             if (lbxEvents.SelectedItem != null)
             {
                 Event selected = lbxEvents.SelectedItem as Event;
