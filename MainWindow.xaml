@@ -8,13 +8,13 @@
         Title="MainWindow" Height="450" Width="800"
         Loaded="Window_Loaded">
     <Grid>
-        <ListBox x:Name="lbxEvents" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="47,69,514,69"/>
+        <ListBox x:Name="lbxEvents" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="47,69,514,69" SelectionChanged="lbxEvents_SelectionChanged"/>
         <ListBox x:Name="lbxTickets" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="352,69,34,69"/>
         <Label Content="Events" HorizontalAlignment="Left" Margin="47,38,0,0" VerticalAlignment="Top"/>
         <Label Content="Tickets" HorizontalAlignment="Left" Margin="352,38,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbxSearch" HorizontalAlignment="Left" Margin="166,42,0,0" TextWrapping="Wrap" Text="Search" VerticalAlignment="Top" Width="120"/>
         <Label Content="Number Of Tickets:" HorizontalAlignment="Left" Margin="352,385,0,0" VerticalAlignment="Top" Width="115"/>
-        <TextBox x:Name="tbxBook" HorizontalAlignment="Left" Margin="472,389,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbxBook" HorizontalAlignment="Left" Margin="472,389,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnBook" Content="Book" HorizontalAlignment="Left" Margin="616,388,0,0" VerticalAlignment="Top" Click="btnBook_Click"/>
         <TextBlock x:Name="tbkMessage" HorizontalAlignment="Left" Margin="47,390,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="179"/>
 

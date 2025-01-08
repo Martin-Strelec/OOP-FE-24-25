@@ -40,6 +40,17 @@ namespace OOP_FE_24_25
             VIPTicket vtic1 = new VIPTicket("Ticket and Hotel Package", 150m, 100, "4* Hotel", 100m);
             VIPTicket vtic2 = new VIPTicket("Weekend Ticket", 200m, 100, "with camping", 100m);
 
+            //Adding tickets to Events
+            ev1.Tickets.Add(tic1);
+            ev1.Tickets.Add(tic2);
+            ev1.Tickets.Add(vtic1);
+            ev1.Tickets.Add(vtic2);
+
+            ev2.Tickets.Add(tic1);
+            ev2.Tickets.Add(tic2);
+            ev2.Tickets.Add(vtic1);
+            ev2.Tickets.Add(vtic2);
+
             //Adding to lists
             events.Add(ev1);
             events.Add(ev2);
@@ -48,6 +59,9 @@ namespace OOP_FE_24_25
             tickets.Add(tic2);
             tickets.Add(vtic1);
             tickets.Add(vtic2);
+
+            //Sorting events based on their date
+            events.Sort();
 
             lbxEvents.ItemsSource = events;
             lbxTickets.ItemsSource = tickets;
@@ -63,13 +77,17 @@ namespace OOP_FE_24_25
             lbxEvents.ItemsSource = null;
             lbxTickets.ItemsSource = null;
 
-            if (tbxBook != null)
+            if (tbxBook.Text != null || tbxBook.Text != "")
             {
                 if (int.TryParse(tbxBook.Text, out value) && (selected != null))
                 {
                     if (value <= selected.AvailableTickets)
                     {
                         selected.AvailableTickets -= value;
+                        if (selected.AvailableTickets == 0)
+                        {
+                            tickets.Remove(selected);
+                        }
                         tbkMessage.Text = "Ticket(s) booked!";
                     }
                     else
@@ -91,5 +109,41 @@ namespace OOP_FE_24_25
             lbxEvents.ItemsSource = events;
             lbxTickets.ItemsSource = tickets;
         }
+
+        private void tbxSearch_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void lbxEvents_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        //private void tbxSearch_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        //{
+        //    //Resetting Events
+        //    events.Clear();
+
+        //    //Formatting field value
+        //    string searchValue = tbxSearch.Text.Trim().ToLower();
+
+        //    //Checking each event
+        //    foreach (Event match in events)
+        //    {
+        //        string eventName = match.Name.Trim().ToLower();
+        //        for (int i = 0; i < searchValue.Length; i++)
+        //        {
+        //            if (eventName == searchValue)
+        //            {
+        //                events.Add(match);
+        //            }
+        //            else
+        //            {
+        //                events.Clear();
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
