@@ -110,11 +110,6 @@ namespace OOP_FE_24_25
             lbxTickets.ItemsSource = tickets;
         }
 
-        private void tbxSearch_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
         private void lbxEvents_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
