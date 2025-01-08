@@ -27,6 +27,7 @@ namespace OOP_FE_24_25
             this.Name = name;
             this.EventDate = eventDate;
             this.EventType = eventType;
+            this.Tickets = new List<Ticket>();
         }
 
         public int CompareTo(Event other)
