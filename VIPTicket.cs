@@ -13,16 +13,20 @@ namespace OOP_FE_24_25
         public string AdditionalExtras { get; set; }
         #endregion
 
+        #region constructor
         public VIPTicket(string name, decimal price, int availableTickets, string addtitionalExtras, decimal additionalCosts) : base(name, price, availableTickets) 
         {
             this.AdditionalExtras = addtitionalExtras;
             this.AdditionalCosts = additionalCosts;
             this.Price = price + additionalCosts;
         }
+        #endregion
 
+        #region methods
         public override string ToString()
         {
             return $"{Name} - {Price:c} ({AdditionalExtras}) [AVAILABLE - {AvailableTickets}]";
         }
+        #endregion
     }
 }

@@ -22,6 +22,7 @@ namespace OOP_FE_24_25
         }
         #endregion
 
+        #region Constructors
         public Event(string name, DateTime eventDate, TypeOfEvent eventType)
         {
             this.Name = name;
@@ -29,7 +30,9 @@ namespace OOP_FE_24_25
             this.EventType = eventType;
             this.Tickets = new List<Ticket>();
         }
+        #endregion
 
+        #region methods
         public int CompareTo(Event other)
         {
             return this.EventDate.CompareTo(other.EventDate);
@@ -39,5 +42,6 @@ namespace OOP_FE_24_25
         {
             return $"{Name} - {EventDate:d}";
         }
+        #endregion
     }
 }

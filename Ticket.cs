@@ -14,6 +14,7 @@ namespace OOP_FE_24_25
         public int AvailableTickets { get; set; }
         #endregion
 
+        #region constructors
         public Ticket (string name, decimal price, int availableTickets)
         {
             this.Name = name;
@@ -21,10 +22,13 @@ namespace OOP_FE_24_25
             this.AvailableTickets = availableTickets;
         }
         public Ticket() { }
+        #endregion
 
+        #region methods
         public override string ToString()
         {
             return $"{this.Name} - {Price:c} [AVAILABLE - {AvailableTickets}]";
         }
+        #endregion
     }
 }
