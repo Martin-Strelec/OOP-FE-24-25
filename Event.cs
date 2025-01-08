@@ -37,7 +37,7 @@ namespace OOP_FE_24_25
 
         public override string ToString()
         {
-            return $"{Name} - {EventDate}";
+            return $"{Name} - {EventDate:d}";
         }
     }
 }
